@@ -11,7 +11,7 @@ $back = "<p><a href=\"javascript: history.back()\">Вернуться назад
             echo "<p><font color='#ff1493' size='20pt'>ERROR</font>$DBlink->error</p>";
     }
 
-    $conn = new mysqli("localhost","igor_igo4ek","123456","igor_database1");
+    $conn = new mysqli("localhost","username","userpassword","database1");
     if($conn->error)
     {
         echo "<p><font color='#ff1493' size='20pt'>Ошибка при подключении БД: </font>$DBlink->error</p>";
