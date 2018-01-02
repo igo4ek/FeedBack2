@@ -13,7 +13,7 @@ function query ($sql, $DBlink)
     else echo "<p><font color='#ff1493' size='20pt'>ERROR</font>$DBlink->error</p>";
 }
 
-$conn = new mysqli("localhost","igor_igo4ek","123456","igor_database1");
+$conn = new mysqli("localhost","username","userpassword","database1");
 if($conn->error)
 {
     echo "<p><font color='#ff1493' size='20pt'>Ошибка при подключении БД: </font>$DBlink->error</p>";
@@ -29,6 +29,6 @@ mail        VARCHAR(100) CHARACTER SET utf8,
 fileName    VARCHAR(100) CHARACTER SET utf8,
 fileSize    INTEGER ,
 message     LONGTEXT CHARACTER SET utf8
-)ENGINE innoDB;";
+)ENGINE innoDB;"; Почему innoDB вместо MEMORY? Да потому что MEMORY  не поддерживает тип данных TEXT, а нужен он для поля message.
 query($sql, $conn);
 $conn->close();
