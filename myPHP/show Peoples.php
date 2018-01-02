@@ -49,7 +49,6 @@ while ($row = $result->fetch_row())
     {
         echo '<th>'.$row[$i].'</th>';
     }
-    /*printf ("%s (%s)\n", $row[0], $row[1]);*/
 }
 echo '</table>';
 
