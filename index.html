@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+ 
+<head>
+	<title>Обратная связь</title>
+	<meta charset="utf-8">
+  
+	<style type="text/css">
+	form{
+		background: #BFCFDF;
+		border: 1px solid;
+		display: block;
+		margin: 0 auto;
+		padding: 14px;
+		width: 18%;
+	}
+	#submit{
+		display:block;
+		font-size:25;
+		height:30px;
+		text-align:center;
+		width: 95%;
+	}
+	input, textarea{
+		margin-bottom: 10px	;
+		width: 95%;
+		display:block;
+		text-align:left;
+	}
+	</style>
+	<script type="text/javascript"></script>
+</head>
+
+<body>
+	<form enctype="multipart/form-data" onsubmit="return readAndValidate();" method = 'post' action = "run2.php" >
+
+		<label for="name">ФИО:</label>
+		<input maxlength="30" type="text" name='name' value = ""/>
+	  
+		<label for="mail">E-mail:</label>
+		<input maxlength="30" type="text" name='mail' value = ""/>
+ 
+		<label for="phone">Телефон:</label>
+		<input maxlength="30" type="text" name='phone' value = "+7"/>
+
+		<label for="fileFile">Прикрепить файл:</label>
+		<input type="file" name='uploadedFile' >
+
+		<label for="message">Сообщение:</label>
+		<textarea rows="5" cols="40"      name='message'></textarea>
+ 
+		<input type="submit" id = "submit" value="Отправить" />
+
+		<a href="/myPHP/show Peoples.php">Показать всех!</a>
+
+	</form>
+	<!--a href="/myPHP/******.php">запуск DB</a-->
+</body>
+
+<script>
+	
+	var inputsName=[
+		'name',
+		'mail',
+		'phone',
+		'message',
+		'submit'];
+		
+		//рус: А-Я а-я u0410-u042F u0430-u044F, Ё = u0401, ё = u0451
+		//источник: http://www.cyberforum.ru/php-regex/thread223472.html
+		//эталон: '/^((([А-ЯЁ]{1}[а-яё]+\s+)+)|(([A-Z]{1}[a-z]+\s+)+))$/'
+	var regulars=[
+        /^((([А-ЯЁ]{1}[а-яё]{1,13}\s{0,1}){1,5})|(([A-Z]{1}[a-z]{1,13}\s{0,1}){1,5}))$/u, //for FIO
+		/^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i, //for e-mail
+		/^[+]{0,1}\d[\d\(\)\ -]{5,15}\d$/] //for phone
+	var alerts=[
+		"Заполните корректно поле: ФИО.",
+		"Заполните корректно поле: E-mail.",
+		"Заполните корректно поле: Телефон.",
+		"Поздравляю! Вы ввели всё правильно.\nВаши данные отправлены на сервер."]
+		
+	function validateInput(name, regular)
+	{
+		return regular.test(name);
+	}
+	function readAndValidate()
+	{
+		var result;
+		var i;
+		for (i = 0; i < 3; i++) 
+		{
+			if(validateInput(document.getElementsByName(inputsName[i])[0].value, regulars[i]))// введённый пользователем текст -- будем проверять на соответствие
+			{			
+				result = true;
+			}
+			else
+			{
+				window.alert(alerts[i]);
+				result = false;
+				return result;
+			}
+		}
+		if(result)window.alert(alerts[3]);
+		return result;
+	 }
+	 
+
+	 
+	
+</script>
+
