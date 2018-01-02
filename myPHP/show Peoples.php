@@ -4,7 +4,7 @@
 header("Content-Type: text/html; charset=UTF-8");
 
 /*подключимся к БД*/
-$conn = new mysqli("localhost","igor_igo4ek","123456","igor_database1");
+$conn = new mysqli("localhost","username","userpassword","igor_database1");
 if($conn->error)
 {
     echo "<p><font color='#ff1493' size='20pt'>Ошибка при подключении БД: </font>$DBlink->error</p>";
@@ -28,7 +28,7 @@ echo '<style>
       }
       th {
       	border:#ccc 1px solid;
-	    border-collapse:separate;
+	border-collapse:separate;
         text-align: left;
         padding: 5px;
         background-color: #eaebec;
@@ -37,7 +37,7 @@ echo '<style>
       th:hover {
 	background-color: snow;
 	color: lightseagreen;
-}
+      }
     </style>';
 
 /* выборка данных и помещение их в массив */
